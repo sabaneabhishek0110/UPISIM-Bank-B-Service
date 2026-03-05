@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.math.BigDecimal;
 import java.security.PrivateKey;
 import java.time.Instant;
 
@@ -37,13 +38,13 @@ public class AccountController {
             boolean valid = paymentService.authenticateUser(vpa, pin);
             BalanceResponse response = new BalanceResponse();
             if(!valid){
-                response.setBalance(0.0);
+                response.setBalance(BigDecimal.ZERO);
                 response.setStatus("failed");
                 response.setResponseCode("U01");
                 response.setFailureReason("Wrong pin entered");
                 return ResponseEntity.ok(response);
             }
-            Double balance = paymentService.getAccountBalance(vpa);
+            BigDecimal balance = paymentService.getAccountBalance(vpa);
             response.setBalance(balance);
             response.setStatus("success");
             response.setResponseCode("U00");

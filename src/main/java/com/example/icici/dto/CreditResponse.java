@@ -12,8 +12,8 @@ import lombok.Setter;
 public class CreditResponse {
     private String status;
     private String responseCode;
-    private String upi_txn_id;
+    private String upiTxnId;
     private String rrn;
-    private String bank_txn_id;
+    private String bankTxnId;
     private String failureReason;
 }

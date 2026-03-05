@@ -39,8 +39,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         System.out.println("Entered Into filter : "+path);
 
         if (path.startsWith("/health") ||
-                path.startsWith("/internal/icici/npci/register-public-key")) {
-
+                path.startsWith("/internal/icici/npci/register-public-key") ||
+                path.startsWith("/api/bank/account/create")) {
             filterChain.doFilter(wrappedRequest, response);
             System.out.println("Passed through filter : "+path);
             return;

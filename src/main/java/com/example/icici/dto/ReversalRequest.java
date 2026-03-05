@@ -11,11 +11,8 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreditRequest {
-    private String PayeeVpa;
-    private BigDecimal amount;
+public class ReversalRequest {
     private String upiTxnId;
-    private String rrn;
-    private String pspTxnId;
-
+    private String payerVpa;
+    private BigDecimal amount;
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 public interface AccountsRepository extends JpaRepository<icici_accounts, String> {
@@ -15,11 +16,11 @@ public interface AccountsRepository extends JpaRepository<icici_accounts, String
     @Modifying
     @Transactional
     @Query("UPDATE icici_accounts a SET a.balance = a.balance - :amount WHERE a.vpa = :vpa AND a.balance >= :amount")
-    int debitBalance(@Param("vpa") String vpa,@Param("amount") double amount);
+    int debitBalance(@Param("vpa") String vpa,@Param("amount") BigDecimal amount);
 
     @Modifying
     @Transactional
     @Query("UPDATE icici_accounts a SET a.balance = a.balance + :amount WHERE a.vpa = :vpa")
-    int creditBalance(@Param("vpa") String vpa,@Param("amount") double amount);
+    int creditBalance(@Param("vpa") String vpa,@Param("amount") BigDecimal amount);
 }
 
