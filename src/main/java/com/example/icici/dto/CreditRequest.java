@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreditRequest {
+    private String PayerVpa;
     private String PayeeVpa;
     private BigDecimal amount;
     private String upiTxnId;

@@ -62,9 +62,24 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 StandardCharsets.UTF_8
         );
 
-        String public_key = iciciService.loadPublicKeyFromdb(npciId);
-        PublicKey publicKey = iciciService.convertToPublicKey(public_key);
-        boolean valid = iciciService.verify(payload,base64Signature,publicKey);
+        String public_key;
+        try {
+            public_key = iciciService.loadPublicKeyFromdb(npciId);
+        } catch (Exception e) {
+            System.out.println("NPCI ID not registered in ICICI: " + npciId);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
+
+        boolean valid;
+        try {
+            PublicKey publicKey = iciciService.convertToPublicKey(public_key);
+            valid = iciciService.verify(payload, base64Signature, publicKey);
+        } catch (Exception e) {
+            System.out.println("Signature verification error: " + e.getMessage());
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
 
         System.out.println("Valid : "+valid);
 

@@ -14,5 +14,8 @@ import java.math.BigDecimal;
 public class ReversalRequest {
     private String upiTxnId;
     private String payerVpa;
+    private String payeeVpa;
     private BigDecimal amount;
+    private String rrn;
+    private String pspTxnId;
 }

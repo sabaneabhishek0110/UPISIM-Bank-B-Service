@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class DebitRequest {
     private String PayerVpa;
+    private String PayeeVpa;
     private BigDecimal amount;
     private String pin;
     private String upiTxnId;
